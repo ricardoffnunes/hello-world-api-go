@@ -1,0 +1,4 @@
+# Ignore the go sum file
+go.sum
+# Ignore the database file
+users.db
