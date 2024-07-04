@@ -93,12 +93,10 @@ func getUser(c *gin.Context) {
 
     // Today's date without the time
 	today := time.Date(time.Now().Year(), time.Now().Month(), time.Now().Day(), 0, 0, 0, 0, time.Local)
-    log.Printf("Today's date is: %s", today)
-    
+
+    // The user's birthday without the year
     birthday := user.DateOfBirth
     birthdayThisYear := time.Date(today.Year(), birthday.Month(), birthday.Day(), 0, 0, 0, 0, time.Local)
-	// Print birthdayThisYear
-	log.Printf("Birthday this year: %s", birthdayThisYear)
 
     var message string
 	// If the birthday is today
@@ -108,7 +106,6 @@ func getUser(c *gin.Context) {
 		// If the birthday has not occurred yet this year
 		// Calculate the number of days until the birthday
 		daysUntilBirthday := birthdayThisYear.Sub(today).Hours() / 24
-		log.Printf("Days until birthday: %d", (daysUntilBirthday))
 		
 		// If the birthday is today
 		if daysUntilBirthday == 0 {
