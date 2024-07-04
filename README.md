@@ -121,3 +121,67 @@ PASS
 ok      hello-world-app    (duration)
 
 If a test fails, the output will provide details about the failed test cases.
+
+# Making the application cloud-ready
+
+Since the aim of this initial implementation was to be able to run locally, I used bbolt for the database.
+
+In order to make this application more resilient in a cloud environment, where multiple instances of this app might exist, it is recommended to use an RDS database.
+
+Obviously this would implicate changes on the database used for this app.
+
+1. **AWS Components:**
+   - **EC2 Instance**: To host the Go application.
+   - **Elastic Load Balancer (ELB)**: To distribute incoming traffic across multiple EC2 instances (optional, for scalability).
+   - **Amazon RDS**: For a managed, scalable relational database.
+   - **Amazon S3**: For storing database backups and other static assets.
+   - **Amazon CloudWatch**: For logging and monitoring the application.
+   - **IAM Role**: To provide the EC2 instance permissions to interact with other AWS services.
+   - **VPC**: For network isolation and security.
+
+2. **Flow Diagram**:
+   - **Route 53**: User DNS requests are routed to the ELB.
+   - **ELB**: The ELB distributes incoming requests to multiple EC2 instances.
+   - **EC2 Instances**: Each instance runs the Go application. It connects to Amazon RDS for the user data storage (if not using BoltDB).
+   - **RDS**: The relational database service that stores user data.
+   - **S3**: Used for storing backups of the database.
+   - **CloudWatch**: For monitoring logs and setting up alarms.
+
+## Detailed System Diagram
+
+```plaintext
+          +---------------------+
+          |      Route 53       |
+          +---------+-----------+
+                    |
+                    |
+                    v
+          +---------------------+
+          |         ELB         |
+          +---------+-----------+
+                    |
+       +------------+------------+
+       |                         |
+       |                         |
+       v                         v
++--------------+         +--------------+
+|   EC2 (Go    |         |   EC2 (Go    |
+| Application) |         | Application) |
++------+-------+         +------+-------+
+       |                        |
+       |                        |
+       v                        v
++---------------+         +---------------+
+|    Amazon     |         |    Amazon     |
+|     RDS       |         |     RDS       |
++---------------+         +---------------+
+       |
+       |
+       v
++---------------+
+|    Amazon     |
+|     S3        |
+|  (Backups)    |
++---------------+
+```
+
