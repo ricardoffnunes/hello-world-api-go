@@ -15,15 +15,15 @@ This is a simple "Hello World" API application written in Go using the Gin frame
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/yourusername/hello-world-birthday-api.git
-   cd hello-world-birthday-api
-   ```
+    ```bash
+    git clone https://github.com/yourusername/hello-world-birthday-api.git
+    cd hello-world-birthday-api
+    ```
 
 2. Run run.sh:
-  ```bash
-  ./run.sh
-  ```
+    ```bash
+    ./run.sh
+    ```
 
 The server will run on `http://localhost:8080`.
 
