@@ -103,25 +103,6 @@ The server will run on `http://localhost:8080`.
    - Enter the URL: `http://localhost:8080/hello/johndoe`.
    - Click `Send`.
 
-## Running Tests
-
-To run the tests for this application, follow these steps:
-
-1. Open your terminal or command prompt.
-2. Navigate to the project directory where the `main.go` file and its corresponding test file `main_test.go` are located.
-3. Run the following command:
-
-```bash
-go test
-```
-
-This command will execute all the test cases defined in the test files within the current project directory. If the tests pass, you will see an output similar to:
-
-PASS
-ok      hello-world-app    (duration)
-
-If a test fails, the output will provide details about the failed test cases.
-
 # Making the application cloud-ready
 
 Since the aim of this initial implementation was to be able to run locally, I used bbolt for the database.
