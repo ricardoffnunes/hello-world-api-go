@@ -20,17 +20,10 @@ This is a simple "Hello World" API application written in Go using the Gin frame
    cd hello-world-birthday-api
    ```
 
-2. Install dependencies:
-
-   ```bash
-   go mod tidy
-   ```
-
-3. Run the application:
-
-   ```bash
-   go run main.go
-   ```
+2. Run run.sh:
+  ```bash
+  ./run.sh
+  ```
 
 The server will run on `http://localhost:8080`.
 
@@ -109,3 +102,22 @@ The server will run on `http://localhost:8080`.
    - Set the request type to `GET`.
    - Enter the URL: `http://localhost:8080/hello/johndoe`.
    - Click `Send`.
+
+## Running Tests
+
+To run the tests for this application, follow these steps:
+
+1. Open your terminal or command prompt.
+2. Navigate to the project directory where the `main.go` file and its corresponding test file `main_test.go` are located.
+3. Run the following command:
+
+```bash
+go test
+```
+
+This command will execute all the test cases defined in the test files within the current project directory. If the tests pass, you will see an output similar to:
+
+PASS
+ok      hello-world-app    (duration)
+
+If a test fails, the output will provide details about the failed test cases.
